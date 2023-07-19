@@ -1,20 +1,4 @@
-/**
- * Class for a LinkedList Node with data of any type
- */
-class LinkedListNode<T> {
-    data: T;
-    next: LinkedListNode<T> | null;
-
-    /**
-     * Creates a LinkedListNode and sets the next one to null
-     * 
-     * @param {T} data - The data for the LinkedListNode
-     */
-    constructor(data: T) {
-        this.data = data;
-        this.next = null;
-    }
-}
+import LinkedListNode from "./LinkedListNode";
 
 /**
  * Class for a LinkedList of any type T
@@ -24,9 +8,11 @@ class LinkedList<T> {
     
     /**
      * Constructs the LinkedList starting with a null head
+     * 
+     * @param {T | null} headNode - Either a node to initialize the LinkedList or null
      */
-    constructor() {
-        this.head = null; 
+    constructor(headNode?: T | null) {
+        this.head = headNode ? new LinkedListNode(headNode) : null;
     }
 
     /**
@@ -51,3 +37,5 @@ class LinkedList<T> {
         currentNode.next = newNode;
     }
 }
+
+export default LinkedList;

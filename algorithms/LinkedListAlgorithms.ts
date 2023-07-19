@@ -104,3 +104,45 @@ function compareStringLinkedLists(stringA: LinkedList<string>, stringB: LinkedLi
     //If all else fails they're proven equal
     return 0;
 }
+
+/**
+ * Reverses a linked list from a head node
+ * 
+ * @param {LinkedListNode<T> | null} headNode - The head node of the function
+ * @returns LinkedListNode<T> with the LinkedList reversed
+ */
+function reverseLinkedList<T>(headNode: LinkedListNode<T> | null): LinkedListNode<T> {
+    // If there's no head node or only one node, just return the head node
+    if(headNode === null || headNode.next === null) return headNode as LinkedListNode<T>;
+
+    // Track the previous node
+    let previousNode: LinkedListNode<T> | null = null; 
+
+    //Start with the head node
+    let currentNode: LinkedListNode<T> | null = headNode;
+    
+    // While we're not at the end of the list, set the next to previous, previous to current, and current to next
+    while(currentNode) {
+        const nextNode: LinkedListNode<T> | null = currentNode.next;
+        currentNode.next = previousNode;
+        previousNode = currentNode;
+        currentNode = nextNode;
+    }
+    return previousNode as LinkedListNode<T>;
+}
+
+/*
+TODO: Implement add nodes functionality
+function addNodes(numberA: LinkedListNode<number> | null, numberB: LinkedListNode<number> | null, carry: number): LinkedListNode<number> | null {
+    if(!numberA && !numberB) return carry === 0 ? null : new LinkedListNode(carry);
+
+    const value1 = numberA ? numberA.data : 0;
+    const value2 = numberB ? numberB.data : 0;
+    const sum = value1 + value2 + carry;
+
+    const newNode = new LinkedListNode(sum % 10);
+    const nextA = numberA ? numberA.next : null;
+    const nextB = numberB ? numberB.next : null;
+    newNode.next = addNodes(nextA, nextB, Math.floor(sum / 10));
+    return newNode;
+} */

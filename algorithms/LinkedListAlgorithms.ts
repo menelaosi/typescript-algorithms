@@ -66,3 +66,41 @@ function deleteNode<T>(head: LinkedListNode<T> | null, nodeToDelete: LinkedListN
         currentNode = currentNode.next;
     }
 }
+
+/**
+ * Compares two strings represented by LinkedLists and says which one is greater
+ * 
+ * @param {LinkedList<string>} stringA - the first linked list representing a string
+ * @param {LinkedList<string>} stringB - the second linked list representing a string
+ * @returns 1 if stringA is lexographically greater than stringB, -1 if stringB is greater, and 0 if they're equal
+ */
+function compareStringLinkedLists(stringA: LinkedList<string>, stringB: LinkedList<string>): number {
+    //Point to both heads
+    let stringANode = stringA.head;
+    let stringBNode = stringB.head;
+
+    //While both nodes exist
+    while(stringANode && stringBNode) {
+        // If string A is greater than return 1
+        if(stringANode.data > stringBNode.data) {
+            return 1;
+        }
+
+        //If string B is greater than return -1
+        if(stringBNode.data > stringANode.data) {
+            return -1;
+        }
+
+        //Keep iterating through if they're the same
+        stringANode = stringANode.next;
+        stringBNode = stringBNode.next;
+    }
+    //If there's a value for StringANode, that means it's longer than B so A is greater
+    if(stringANode) return 1;
+
+    //If there's a value for stringBNode, that means it's longer than A so is greater
+    if(stringBNode?.next) return -1;
+
+    //If all else fails they're proven equal
+    return 0;
+}

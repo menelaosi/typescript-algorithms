@@ -131,6 +131,40 @@ function reverseLinkedList<T>(headNode: LinkedListNode<T> | null): LinkedListNod
     return previousNode as LinkedListNode<T>;
 }
 
+/**
+ * Merges two linked lists
+ * 
+ * @param {LinkedList<T>} listA - First LinkedList to merge
+ * @param {LinkedList<T>} listB - Second LinkedList to merge
+ * @returns listBNode after everything is changed
+ */
+function mergeLinkedLists<T>(listA: LinkedList<T>, listB: LinkedList<T>) {
+    // Go through both linked lists
+    let listANode = listA.head;
+    let listBNode = listB.head;
+
+    // While there's a list A Node and a list B Node
+    while(listANode && listBNode) {
+        // Get the next nodes
+        let listANextNode = listANode.next;
+        let listBNextNode = listBNode.next;
+
+        // Set List B's next to list A's next node
+        listBNode.next = listANextNode;
+
+        // Set List A's next node to listB node now
+        listANode.next = listBNode;
+
+        // Set list A node to the next node for A
+        listANode = listANextNode;
+
+        // Set list B node to the current node for B
+        listBNode = listBNextNode;
+    }
+
+    return listBNode;
+}
+
 /*
 TODO: Implement add nodes functionality
 function addNodes(numberA: LinkedListNode<number> | null, numberB: LinkedListNode<number> | null, carry: number): LinkedListNode<number> | null {

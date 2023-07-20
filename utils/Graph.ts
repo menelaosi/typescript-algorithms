@@ -17,7 +17,6 @@ class Graph {
 
     /**
      * Adds a vertex to the graph
-     * 
      * @param {number} vertex - The vertex being added
      */
     addVertex(vertex: number) {
@@ -26,7 +25,6 @@ class Graph {
 
     /**
      * Add an edge to a graph's adjacency list
-     * 
      * @param vertex1 vertex to be added as an edge
      * @param vertex2 vertex to be added as an edge
      */
@@ -37,10 +35,9 @@ class Graph {
 
     /**
      * Get the adjacent vertices 
-     * 
      * @param {number} vertex Get the list of adjacent vertices. This should be a node
      * @returns {number[]} - The verte returned
-     */    
+     */
     getAdjacentVertices(vertex: number): number[] {
         return this.adjacencyList.get(vertex) || [];
     }

@@ -3,7 +3,6 @@ import LinkedListNode from "../utils/LinkedListNode";
 
 /**
  * Inserts a value into a sorted LinkedList
- * 
  * @param {number} value - This is the value to be inserted
  * @param {LinkedList<number>} sortedLinkedList - This is the sorted LinkedList to insert the value
  * @returns 
@@ -30,7 +29,6 @@ function linkedListInsertSorted(value: number, sortedLinkedList: LinkedList<numb
 
 /**
  * Deletes a given node from a LinkedList if it's found
- * 
  * @param {LinkedListNode<T> | null} head - The head node
  * @param {LinkedListNode<T> | null} nodeToDelete - The node to delete
  * @returns once node is deleted
@@ -69,7 +67,6 @@ function deleteNode<T>(head: LinkedListNode<T> | null, nodeToDelete: LinkedListN
 
 /**
  * Compares two strings represented by LinkedLists and says which one is greater
- * 
  * @param {LinkedList<string>} stringA - the first linked list representing a string
  * @param {LinkedList<string>} stringB - the second linked list representing a string
  * @returns 1 if stringA is lexographically greater than stringB, -1 if stringB is greater, and 0 if they're equal
@@ -107,7 +104,6 @@ function compareStringLinkedLists(stringA: LinkedList<string>, stringB: LinkedLi
 
 /**
  * Reverses a linked list from a head node
- * 
  * @param {LinkedListNode<T> | null} headNode - The head node of the function
  * @returns LinkedListNode<T> with the LinkedList reversed
  */
@@ -133,7 +129,6 @@ function reverseLinkedList<T>(headNode: LinkedListNode<T> | null): LinkedListNod
 
 /**
  * Merges two linked lists
- * 
  * @param {LinkedList<T>} listA - First LinkedList to merge
  * @param {LinkedList<T>} listB - Second LinkedList to merge
  * @returns listBNode after everything is changed
@@ -167,7 +162,6 @@ function mergeLinkedLists<T>(listA: LinkedList<T>, listB: LinkedList<T>) {
 
 /**
  * Adds two numbers in a linked list that starts with the lowest digit as the head
- * 
  * @param {LinkedListNode<number> | null} l1 - the first linked list
  * @param {LinkedListNode<number> | null} l2 - the second linked list 
  * @returns a LinkedListNode that is the head of a new LinkedList with the sum

@@ -1,6 +1,5 @@
 /**
  * Performs a binary search recursively 
- * 
  * @param {number[]} array - the sorted array of numbers to binary search
  * @param {number} left - the left index of the binary search
  * @param {number} right - the right index of the binary search
@@ -18,11 +17,10 @@ function binarySearch(array: number[], left: number, right: number, target: numb
         return binarySearch(array, midpoint + 1, right, target);
     }
     return -1;
-}; 
+};
 
 /**
  * Does a binary search on a tilted array
- * 
  * @param {number[]} array - The array of numbers to search
  * @param {number} left - The left value in the array
  * @param {number} right - The right value in the array

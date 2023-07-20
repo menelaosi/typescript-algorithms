@@ -7,7 +7,6 @@ class LinkedListNode<T> {
 
     /**
      * Creates a LinkedListNode and sets the next one to null
-     * 
      * @param {T} data - The data for the LinkedListNode
      */
     constructor(data: T) {

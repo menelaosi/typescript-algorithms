@@ -8,7 +8,6 @@ class LinkedList<T> {
     
     /**
      * Constructs the LinkedList starting with a null head
-     * 
      * @param {T | null} headNode - Either a node to initialize the LinkedList or null
      */
     constructor(headNode?: T | null) {
@@ -17,7 +16,6 @@ class LinkedList<T> {
 
     /**
      * Function to append a node to the LinkedList
-     * 
      * @param {T} data - Adds data to the LinkedList
      * @returns 
      */

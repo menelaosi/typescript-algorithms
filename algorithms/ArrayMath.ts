@@ -1,6 +1,5 @@
 /**
  * Checks an array of numbers to see if any add up to the target
- * 
  * @param {number[]} nums - an array of numbers to check
  * @param {number} target - the target number they'd reach
  * @returns {number[]} the pair of numbers that add to the target or an empty array
@@ -20,7 +19,6 @@ function twoSum(nums: number[], target: number): number[] {
 
 /**
  * Find the median number of two sorted arrays
- * 
  * @param {number[]} nums1 - first number array
  * @param {number[]} nums2 - second number array
  * @returns the median of the two arrays

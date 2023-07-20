@@ -1,13 +1,12 @@
 /**
  * Calculates the length of the longest substring without repeating characters
- * 
  * @param {string} s the string to find the longest substring for
  * @returns the maximum length
  */
 function lengthOfLongestSubstring(s: string): number {
 
     //Set max length, start, and end to 0
-    let maxLength = 0; 
+    let maxLength = 0;
     let start = 0;
     let end = 0;
     
@@ -41,7 +40,6 @@ function lengthOfLongestSubstring(s: string): number {
 
 /**
  * Helper function to check if a character is a letter
- * 
  * @param {string} s - string to check if it's a letter
  * @returns false if more or less than one character or if that character is not a letter, otherwise true
  */
@@ -51,7 +49,6 @@ function isLetter(s: string): boolean {
 }
 
 /**
- * 
  * @param {string} s - the string to swap characters for 
  * @param {number} leftIndex - the index of the left character
  * @param {number} rightIndex - the index of the right character
@@ -92,4 +89,54 @@ function reverseStringIgnoringSpecialCharacters(s: string): string {
         }
     }
     return s;
+};
+
+/**
+ * Gets the longest palindrome for a string using Manacher's algorithm
+ * @param {string} s - Input string to find the palindrome for
+ * @returns the longest possible palindrome or an empty string if there's none
+ */
+function longestPalindrome(s: string): string {
+    // Handle null or empty string
+    if(!s || s.length === 0) return "";
+    
+    // Track the maximum length as well as the beginning of the substring
+    let maxLength = 0;
+    let start = 0;
+
+    // Iterate through the string
+    for(let i = 0; i < s.length - 1; i++) {
+        // Use expand around the center to determine if it's an even or odd palindrome so far and what's longer
+        const oddLength = expandAroundCenter(s, i, i);
+        const evenLength = expandAroundCenter(s, i, i + 1);
+        const length = Math.max(oddLength, evenLength);
+
+        //If it's longer than the maxLength, change the maxLength and the start iterator
+        if(length > maxLength) {
+            maxLength = length;
+            start = i - Math.floor((length - 1) / 2);
+        }
+
+        // If the string is too short to have a longer palindrome, break to return
+        if(i + Math.floor(maxLength / 2) >= s.length) break;
+    }
+
+    // Returns the longest palindomic substring
+    return s.substring(start, start + maxLength);
+};
+
+/**
+ * Helper function for the palindrome to expand around the center
+ * @param {string} s - input string from the above problem
+ * @param {number} left - The value for the start of the substring
+ * @param {number} right - The value for the end of the substring
+ * @returns the value of the endpoint - the start point - 1
+ */
+function expandAroundCenter(s: string, left: number, right: number): number {
+    // Check that we're not out of bends and the characters are equivalent, then decrement left and right
+    while(left >= 0 && right < s.length && s.charAt(left) === s.charAt(right)) {
+        left--;
+        right++;
+    }
+    return right - left - 1;
 };

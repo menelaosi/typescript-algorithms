@@ -1,6 +1,5 @@
 /**
  * Gets the longest common subsequence of two strings without memoization
- * 
  * @param {string} s1 - The first string to compare
  * @param {string} s1 - The second string to compare
  * @param {number} m - The number for the first character 
@@ -23,7 +22,6 @@ function longestCommonSubsequence(
 
 /**
  * Compares the two strings using dynamic programming
- * 
  * @param {string} s1 - the first string being compared
  * @param {string} s2 - the second string being compared
  * @param {number} m - the counter of the first string
@@ -49,7 +47,6 @@ function longestCommonSubsequenceWithMemoization(s1: string, s2: string, m: numb
 
 /**
  * Finds the longest common subsequence in two strings
- * 
  * @param {string} s1 - the first string to compare
  * @param {string} s2 - the second string to compare
  * @returns the longest common subsequence
@@ -66,9 +63,7 @@ function longestCommonSubsequenceWrapper(s1: string, s2: string) {
 };
 
 /**
- * 
  * Find the max of two numbers
- * 
  * @param {number} a - first number to compare 
  * @param {number} b - second number to compare 
  * @returns the greater number

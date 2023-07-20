@@ -19,7 +19,7 @@ function longestCommonSubsequence(
         } else {
             return maxNumber(longestCommonSubsequence(s1, s2, m, n - 1), longestCommonSubsequence(s1, s2, m-1, n));
         }
-}
+};
 
 /**
  * Compares the two strings using dynamic programming
@@ -45,7 +45,7 @@ function longestCommonSubsequenceWithMemoization(s1: string, s2: string, m: numb
     }
 
     return memoArray[m][n];
-}
+};
 
 /**
  * Finds the longest common subsequence in two strings
@@ -63,7 +63,7 @@ function longestCommonSubsequenceWrapper(s1: string, s2: string) {
     const memoArray: number[][] = new Array(m + 1).fill(0).map(() => new Array(n + 1).fill(-1));
 
     return longestCommonSubsequenceWithMemoization(s1, s2, m, n, memoArray);
-}
+};
 
 /**
  * 
@@ -75,4 +75,4 @@ function longestCommonSubsequenceWrapper(s1: string, s2: string) {
  */
 function maxNumber(a: number, b: number): number { 
     return (a > b) ? a : b;
-}
+};

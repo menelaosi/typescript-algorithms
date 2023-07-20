@@ -165,6 +165,53 @@ function mergeLinkedLists<T>(listA: LinkedList<T>, listB: LinkedList<T>) {
     return listBNode;
 }
 
+/**
+ * Adds two numbers in a linked list that starts with the lowest digit as the head
+ * 
+ * @param {LinkedListNode<number> | null} l1 - the first linked list
+ * @param {LinkedListNode<number> | null} l2 - the second linked list 
+ * @returns a LinkedListNode that is the head of a new LinkedList with the sum
+ */
+function addTwoNumbers(l1: LinkedListNode<number> | null, l2: LinkedListNode<number> | null): LinkedListNode<number> | null {
+
+    // Set a value for the carry and a 
+    let carry = 0;
+    let listNode = new LinkedListNode(0);
+    let dummyNode = listNode;
+    while(l1 !== null || l2 !== null) {
+        // Sets the values to add to the data or 0
+        const value1 = l1 !== null ? l1.data : 0;
+        const value2 = l2 !== null ? l2.data : 0;
+
+        // Gets the sum of these values and the carry
+        const value = value1 + value2 + carry;
+
+        // Sets a new carry based on the value
+        carry = value >= 10 ? 1 : 0;
+
+        //Sets the next node for the dummy node to a new node
+        dummyNode.next = new LinkedListNode(value % 10);
+
+        // Sets the dummyNode to the new node
+        dummyNode = dummyNode.next;
+
+        // Moves l1 and l2 forward if they're not null
+        if (l1 !== null) {
+            l1 = l1.next;
+        }
+        if (l2 !== null) {
+            l2 = l2.next;
+        }
+    }
+    
+    //Adds the carry if necessary 
+    if(carry > 0) {
+        dummyNode.next = new LinkedListNode(carry);
+    } 
+
+    return listNode.next;
+};
+
 /*
 TODO: Implement add nodes functionality
 function addNodes(numberA: LinkedListNode<number> | null, numberB: LinkedListNode<number> | null, carry: number): LinkedListNode<number> | null {

@@ -97,8 +97,9 @@ function reverseStringIgnoringSpecialCharacters(s: string): string {
  * @returns the longest possible palindrome or an empty string if there's none
  */
 function longestPalindrome(s: string): string {
-    // Handle null or empty string
+    // Handle null or empty string or single character
     if(!s || s.length === 0) return "";
+    if(s.length === 1) return s;
     
     // Track the maximum length as well as the beginning of the substring
     let maxLength = 0;
@@ -139,4 +140,34 @@ function expandAroundCenter(s: string, left: number, right: number): number {
         right++;
     }
     return right - left - 1;
+};
+
+/**
+ * Zigzag conversion
+ * @param {string} s - the string for the zigzag conversion
+ * @param {number} numRows - The number of rows to write out as zigzag
+ */
+function convert(s: string, numRows: number): string {
+    // Handle null or empty string or no rows
+    if(!s || s.length === 0 || numRows <= 0) return "";
+
+    // Handle the case with one row
+    if(numRows === 1) return s;
+
+    // Set a directional value to determine where in the zigzag we are and a row for which row we're in
+    let row = 0;
+    let direction = -1;
+
+    // Create an array of strings for each row
+    const zigzag: string[] = new Array(numRows).fill("");
+    
+    // Iterate through the provided string building the string array at each row and changing direction at the end
+    for(let i = 0; i < s.length; i++) {
+        zigzag[row] += s.charAt(i);
+
+        if(row === 0 || row === numRows - 1) direction = -direction;
+
+        row += direction;
+    }
+    return zigzag.join("");
 };

@@ -38,3 +38,58 @@ function lengthOfLongestSubstring(s: string): number {
     }
     return maxLength;
 };
+
+/**
+ * Helper function to check if a character is a letter
+ * 
+ * @param {string} s - string to check if it's a letter
+ * @returns false if more or less than one character or if that character is not a letter, otherwise true
+ */
+function isLetter(s: string): boolean {
+    if(s.length !== 1) return false
+    return (s >= 'a' && s <= 'z') || (s >= 'A' && s <= 'Z');
+}
+
+/**
+ * 
+ * @param {string} s - the string to swap characters for 
+ * @param {number} leftIndex - the index of the left character
+ * @param {number} rightIndex - the index of the right character
+ * @returns the string with the characters at those indices swapped
+ */
+function swapCharacters(s: string, leftIndex: number, rightIndex: number): string {
+    let returnString = "";
+    for(let i = 0; i < s.length; i++) {
+        if(i === leftIndex) {
+            returnString += s.charAt(rightIndex);
+        } else if(i === rightIndex) {
+            returnString += s.charAt(leftIndex);
+        } else {
+            returnString += s.charAt(i);
+        }
+    }
+    return returnString;
+};
+
+/**
+ * Reverses a string but ignores special characters (characters that aren't letters)
+ * 
+ * @param {string} s - the string to reverse ignoring special characters 
+ * @returns the string with the letters reversed
+ */
+function reverseStringIgnoringSpecialCharacters(s: string): string {
+    let rCounter = s.length - 1;
+    let lCounter = 0;
+    while(lCounter < rCounter) {
+        if(!isLetter(s.charAt(lCounter))) {
+            lCounter++;
+        } else if (!isLetter(s.charAt(rCounter))) {
+            rCounter--;
+        } else {
+            s = swapCharacters(s, lCounter, rCounter);
+            lCounter++;
+            rCounter--;
+        }
+    }
+    return s;
+};

@@ -171,3 +171,35 @@ function convert(s: string, numRows: number): string {
     }
     return zigzag.join("");
 };
+
+/**
+ * Turns a string into a number
+ * @param {string} s - The string to turn into a number 
+ * @returns 0 if there's an error, INT_MIN if it's <= INT_MIN, INT_MAX if it's >= INT_MAX, or the number without whitespace
+ */
+function myAtoi(s: string): number {
+    if(!s || s.length === 0) return 0;
+    
+    let index = 0;
+    let numberString = "";
+
+    while (index < s.length && s.charAt(index) === ' ') {
+        index++;
+    }
+
+    let isPositive = true;
+    if(index < s.length && (s.charAt(index) === '+' || s.charAt(index) === '-')) {
+        isPositive = s.charAt(index) === '+';
+        index++;
+    }
+
+    while(index < s.length && s.charAt(index) >= '0' && s.charAt(index) <= '9') {
+        numberString += s.charAt(index);
+        index++;
+    }
+    const returnNumber = Number(numberString);
+    const INT_MAX = Math.pow(2, 31) - 1;
+    const INT_MIN = -Math.pow(2, 31);
+    if(returnNumber > INT_MAX) return isPositive ? INT_MAX : INT_MIN;
+    return isPositive ? returnNumber : -returnNumber;
+};

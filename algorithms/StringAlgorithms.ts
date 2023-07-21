@@ -171,35 +171,26 @@ function convert(s: string, numRows: number): string {
     }
     return zigzag.join("");
 };
-
+import { INT_MAX, INT_MIN } from "../constants/constants";
 /**
- * Turns a string into a number
+ * Turns a string into a number 
  * @param {string} s - The string to turn into a number 
  * @returns 0 if there's an error, INT_MIN if it's <= INT_MIN, INT_MAX if it's >= INT_MAX, or the number without whitespace
  */
 function myAtoi(s: string): number {
+
+    // Return 0 if there's no string
     if(!s || s.length === 0) return 0;
     
-    let index = 0;
-    let numberString = "";
+    // Regular expression for zero or more spaces, one or zero + or -, and many numbers
+    const numberRegEx = /^ *[+-]?[0123456789]*/;
+    
+    // Match the number to this regular expression
+    const returnNumber = Number(s.match(numberRegEx));
 
-    while (index < s.length && s.charAt(index) === ' ') {
-        index++;
-    }
-
-    let isPositive = true;
-    if(index < s.length && (s.charAt(index) === '+' || s.charAt(index) === '-')) {
-        isPositive = s.charAt(index) === '+';
-        index++;
-    }
-
-    while(index < s.length && s.charAt(index) >= '0' && s.charAt(index) <= '9') {
-        numberString += s.charAt(index);
-        index++;
-    }
-    const returnNumber = Number(numberString);
-    const INT_MAX = Math.pow(2, 31) - 1;
-    const INT_MIN = -Math.pow(2, 31);
-    if(returnNumber > INT_MAX) return isPositive ? INT_MAX : INT_MIN;
-    return isPositive ? returnNumber : -returnNumber;
+    // Return 0 if this doesn't match, INT_MIN if less, or INT_MAX if more
+    if(!returnNumber) return 0;
+    if(returnNumber <= INT_MIN) return INT_MIN;
+    if(returnNumber >= INT_MAX) return INT_MAX;
+    return returnNumber;
 };

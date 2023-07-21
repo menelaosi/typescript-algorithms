@@ -24,3 +24,29 @@ function reverse(x: number): number {
     return isNegative ? -returnNumber : returnNumber;
 };
 
+/**
+ * Determines if a number is a palindrome
+ * @param {number} x - check if it's a palindrome
+ * @returns true if a palindrome, false if not
+ */
+function isPalindrome(x: number): boolean {
+    // Negative numbers aren't palindromes as is every number ending with 0 other than 0
+    if(x < 0 || x % 10 === 0 && x != 0) return false
+
+    // Single digit numbers are palindromic by definition so just return true here
+    if(x <= 10 && x >= 0) return true;
+    
+    // Set a reverse number at 0 and keep reducing the number and increasing reverse
+    let reverseNumber = 0;
+    while(reverseNumber < x) {
+        // Reverse number is the remainder + (10 * reverse number)
+        reverseNumber = (x % 10) + (10 * reverseNumber);
+
+        // Reduce x by a factor of 10
+        x = Math.floor(x / 10);
+    }
+
+    // If the numbers match or would match if reduced by a factor of 10 confirm
+    return (x === reverseNumber || x === Math.floor(reverseNumber / 10));
+};
+
